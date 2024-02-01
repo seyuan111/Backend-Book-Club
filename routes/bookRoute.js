@@ -7,7 +7,8 @@ router.post('/', async (req,res) => {
         if(
             !req.body.title ||
             !req.body.author ||
-            !req.body.publishYear
+            !req.body.summary ||
+            !req.body.ratings
         ){
             return res.status(400).send({
                 message: "Please fill in the require fields: title, author, and publishYear"
@@ -16,7 +17,8 @@ router.post('/', async (req,res) => {
         const newBook = {
             title: req.body.title,
             author: req.body.author,
-            publishYear: req.body.publishYear
+            summary: req.body.summary,
+            ratings: req.body.ratings
         }
 
         const book = await Book.create(newBook)
@@ -63,7 +65,8 @@ router.put("/:id", async (req,res) => {
         if(
             !req.body.title ||
             !req.body.author ||
-            !req.body.publishYear
+            !req.body.summary ||
+            !req.body.ratings
         ){
             return res.status(400).send({
                 message: "Please fill in the require fields: title, author, and publishYear"
